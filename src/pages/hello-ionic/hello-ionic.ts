@@ -19,7 +19,8 @@ export class HelloIonicPage {
    public navCtrl: NavController,
    public alertCtrl: AlertController,  
    public actionSheetCtrl: ActionSheetController,
-   af: AngularFireDatabase) 
+   public data: ActionSheetController,
+   public af: AngularFireDatabase) 
    {
     this.songs = af.list('/songs');
   }
