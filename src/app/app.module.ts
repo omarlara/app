@@ -12,8 +12,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Custom
 import { ExplorePage } from '../pages/explore/explore';
-import { Facebook } from '@ionic-native/facebook'
+import { Facebook } from '@ionic-native/facebook';
 
+//firebase and data
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+// AF2 Settings
+export const firebaseConfig = {
+    apiKey: "AIzaSyBqnPHgYG3jUBjYXuys8APv6KRo0msp-4Q",
+    authDomain: "todo-441bc.firebaseapp.com",
+    databaseURL: "https://todo-441bc.firebaseio.com",
+    projectId: "todo-441bc",
+    storageBucket: "todo-441bc.appspot.com",
+    messagingSenderId: "1098509574957"
+};
 
 @NgModule({
   declarations: [
@@ -25,6 +38,8 @@ import { Facebook } from '@ionic-native/facebook'
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig, 'app'),
+    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

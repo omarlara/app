@@ -14,6 +14,24 @@
     Log In with Facebook
   </button>
 
+  <button ion-button center (click)="facebookLogin()">
+    Get Data from firebase
+  </button>
+  <pre>
+  </pre>
+
+  <ion-list>
+    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title)">
+      {{song.title}}
+    </ion-item>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addSong()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-list>
+  
+
 
   <h3>Welcome to Medic app!</h3>
 
