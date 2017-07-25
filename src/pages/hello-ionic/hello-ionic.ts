@@ -31,7 +31,11 @@ export class HelloIonicPage {
         inputs: [
         {
             name: 'title',
-            placeholder: 'Title'
+            placeholder: 'Title',
+        },
+        {
+            name: 'description',
+            placeholder: 'Description'
         },
         ],
         buttons: [
@@ -45,7 +49,8 @@ export class HelloIonicPage {
             text: 'Save',
             handler: data => {
             this.songs.push({
-                title: data.title
+                title: data.title,
+                description: data.description
             });
             }
         }
@@ -54,7 +59,7 @@ export class HelloIonicPage {
     prompt.present();
   }
 
-  showOptions(songId, songTitle) {
+  showOptions(songId, songTitle, songDescription) {
     let actionSheet = this.actionSheetCtrl.create({
         title: 'What do you want to do?',
         buttons: [
@@ -67,7 +72,7 @@ export class HelloIonicPage {
         },{
             text: 'Update title',
             handler: () => {
-            this.updateSong(songId, songTitle);
+            this.updateSong(songId, songTitle, songDescription);
             }
         },{
             text: 'Cancel',
@@ -85,7 +90,7 @@ export class HelloIonicPage {
         this.songs.remove(songId);
     }
   
-    updateSong(songId, songTitle){
+    updateSong(songId, songTitle, songDescription){
         let prompt = this.alertCtrl.create({
             title: 'Song Name',
             message: "Update the name for this song",
@@ -95,6 +100,11 @@ export class HelloIonicPage {
                 placeholder: 'Title',
                 value: songTitle
             },
+            {
+                name: 'description',
+                placeholder: 'Description',
+                value: songDescription
+            }
             ],
             buttons: [
             {
@@ -107,7 +117,8 @@ export class HelloIonicPage {
                 text: 'Save',
                 handler: data => {
                 this.songs.update(songId, {
-                    title: data.title
+                    title: data.title,
+                    description: data.description
                 });
                 }
             }

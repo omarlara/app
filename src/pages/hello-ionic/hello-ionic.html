@@ -21,8 +21,10 @@
   </pre>
 
   <ion-list>
-    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title)">
+    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title, song.description)">
       {{song.title}}
+      <br>
+     <small>{{song.description}}</small> 
     </ion-item>
     <ion-buttons end>
       <button ion-button icon-only (click)="addSong()">
