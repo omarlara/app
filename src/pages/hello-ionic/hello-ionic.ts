@@ -52,11 +52,16 @@ export class HelloIonicPage {
         {
             text: 'Save',
             handler: data => {
-            this.songs.push({
-                title: data.title,
-                description: data.description,
-                image: data.image
-            });
+            let userData = data;
+            if(userData.title.length > 2 || userData.description.length > 2){
+                this.songs.push({
+                    title: data.title,
+                    description: data.description,
+                    image: data.image
+                });
+            }else{
+                return false;
+            }
             }
         }
         ]
@@ -126,11 +131,18 @@ export class HelloIonicPage {
             {
                 text: 'Save',
                 handler: data => {
-                this.songs.update(songId, {
-                    title: data.title,
-                    description: data.description,
-                    image: data.image
-                });
+                console.log("user data:", data);
+                let userData = data;
+                if(userData.title.length > 2 || userData.description.length > 2){
+                    this.songs.update(songId, {
+                        title: data.title,
+                        description: data.description,
+                        image: data.image
+                    });
+                }
+                else{
+                    return false;
+                }
                 }
             }
             ]
