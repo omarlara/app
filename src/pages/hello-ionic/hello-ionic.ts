@@ -128,7 +128,8 @@ export class HelloIonicPage {
                 handler: data => {
                 this.songs.update(songId, {
                     title: data.title,
-                    description: data.description
+                    description: data.description,
+                    image: data.image
                 });
                 }
             }
