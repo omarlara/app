@@ -37,6 +37,10 @@ export class HelloIonicPage {
             name: 'description',
             placeholder: 'Description'
         },
+        {
+            name: 'image',
+            placeholder: 'Image...'
+        },
         ],
         buttons: [
         {
@@ -50,7 +54,8 @@ export class HelloIonicPage {
             handler: data => {
             this.songs.push({
                 title: data.title,
-                description: data.description
+                description: data.description,
+                image: data.image
             });
             }
         }
@@ -59,7 +64,7 @@ export class HelloIonicPage {
     prompt.present();
   }
 
-  showOptions(songId, songTitle, songDescription) {
+  showOptions(songId, songTitle, songDescription, imageUrl) {
     let actionSheet = this.actionSheetCtrl.create({
         title: 'What do you want to do?',
         buttons: [
@@ -72,7 +77,7 @@ export class HelloIonicPage {
         },{
             text: 'Update title',
             handler: () => {
-            this.updateSong(songId, songTitle, songDescription);
+            this.updateSong(songId, songTitle, songDescription, imageUrl);
             }
         },{
             text: 'Cancel',
@@ -90,7 +95,7 @@ export class HelloIonicPage {
         this.songs.remove(songId);
     }
   
-    updateSong(songId, songTitle, songDescription){
+    updateSong(songId, songTitle, songDescription, imageUrl){
         let prompt = this.alertCtrl.create({
             title: 'Song Name',
             message: "Update the name for this song",
@@ -104,6 +109,11 @@ export class HelloIonicPage {
                 name: 'description',
                 placeholder: 'Description',
                 value: songDescription
+            },
+            {
+                name: 'image',
+                placeholder: 'Image',
+                value: imageUrl
             }
             ],
             buttons: [

@@ -10,21 +10,18 @@
 
 <ion-content padding>
 
-  <button ion-button center (click)="facebookLogin()">
-    Log In with Facebook
-  </button>
 
-  <button ion-button center (click)="facebookLogin()">
-    Get Data from firebase
-  </button>
-  <pre>
-  </pre>
-
+  <h5>Doctors near by you!</h5>
   <ion-list>
-    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title, song.description)">
+    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title, song.description, song.image)">
+      <span 
+        class="thumb_img" 
+        [style.backgroundImage]="'url(' + song.image + ')'">
+      </span>
       {{song.title}}
       <br>
-     <small>{{song.description}}</small> 
+      {{song.description}}
+     <small class="medic-description"></small> 
     </ion-item>
     <ion-buttons end>
       <button ion-button icon-only (click)="addSong()">
@@ -33,9 +30,10 @@
     </ion-buttons>
   </ion-list>
   
+ <button ion-button center (click)="facebookLogin()">
+    Log In with Facebook
+  </button>
 
-
-  <h3>Welcome to Medic app!</h3>
 
    <ion-card *ngIf="userProfile">
      IS AUTENTICADO
@@ -43,9 +41,6 @@
 
   <p>
     Here you can find everything about doctors in your City
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Activate your preferences</button>
   </p>
 
 
