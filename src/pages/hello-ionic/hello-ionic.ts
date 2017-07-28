@@ -4,6 +4,8 @@ import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable, } from 'angularfire2/database';
+import { DetailsPage } from '../details/details';
+
 
 @Component({
   selector: 'page-hello-ionic',
@@ -24,8 +26,12 @@ export class HelloIonicPage {
     this.songs = af.list('/songs');
   }
 
-  addSong(){
-    let prompt = this.alertCtrl.create({
+   ngOnInit() {
+       console.log('list firebase', this.songs)
+   }
+
+    addSong(){
+        let prompt = this.alertCtrl.create({
         title: 'Song Name',
         message: "Enter a name for this new song you're so keen on adding",
         inputs: [
@@ -53,7 +59,7 @@ export class HelloIonicPage {
             text: 'Save',
             handler: data => {
             let userData = data;
-            if(userData.title.length > 2 || userData.description.length > 2){
+            if(userData.title.length > 2 && userData.description.length > 2){
                 this.songs.push({
                     title: data.title,
                     description: data.description,
@@ -67,10 +73,10 @@ export class HelloIonicPage {
         ]
     });
     prompt.present();
-  }
+    }
 
-  showOptions(songId, songTitle, songDescription, imageUrl) {
-    let actionSheet = this.actionSheetCtrl.create({
+    showOptions(songId, songTitle, songDescription, imageUrl) {
+        let actionSheet = this.actionSheetCtrl.create({
         title: 'What do you want to do?',
         buttons: [
         {
@@ -94,7 +100,7 @@ export class HelloIonicPage {
         ]
     });
     actionSheet.present();
-  }
+    }
 
     removeSong(songId: string){
         this.songs.remove(songId);
@@ -133,7 +139,7 @@ export class HelloIonicPage {
                 handler: data => {
                 console.log("user data:", data);
                 let userData = data;
-                if(userData.title.length > 2 || userData.description.length > 2){
+                if(userData.title.length > 2 && userData.description.length > 2){
                     this.songs.update(songId, {
                         title: data.title,
                         description: data.description,
@@ -150,21 +156,31 @@ export class HelloIonicPage {
         prompt.present();
     }
 
-  facebookLogin(){
-    console.log('click');
-    this._facebook.login(['email']).then( (response) => {
-        const facebookCredential = firebase.auth.FacebookAuthProvider
-            .credential(response.authResponse.accessToken);
+    facebookLogin(){
+        console.log('click');
+        this._facebook.login(['email']).then( (response) => {
+            const facebookCredential = firebase.auth.FacebookAuthProvider
+                .credential(response.authResponse.accessToken);
 
-        firebase.auth().signInWithCredential(facebookCredential)
-        .then((success) => {
-            console.log("Firebase success: " + JSON.stringify(success));
-            this.userProfile = success;
-        })
-        .catch((error) => {
-            console.log("Firebase failure: " + JSON.stringify(error));
+            firebase.auth().signInWithCredential(facebookCredential)
+            .then((success) => {
+                console.log("Firebase success: " + JSON.stringify(success));
+                this.userProfile = success;
+            })
+            .catch((error) => {
+                console.log("Firebase failure: " + JSON.stringify(error));
+            });
+
+        }).catch((error) => { console.log(error) });
+    }
+
+    userDetails(key, name, image, description){
+        this.navCtrl.push(DetailsPage, {
+        id: key,
+        name: name,
+        image: image,
+        description: description
         });
+    }
 
-    }).catch((error) => { console.log(error) });
-}
 }

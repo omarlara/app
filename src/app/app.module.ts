@@ -7,6 +7,8 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { Keyboard } from '@ionic-native/keyboard';
+import { DetailsPage } from '../pages/details/details';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +37,8 @@ export const firebaseConfig = {
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    ExplorePage
+    ExplorePage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ export const firebaseConfig = {
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    ExplorePage
+    ExplorePage,
+    DetailsPage
   ],
   providers: [
     Keyboard,

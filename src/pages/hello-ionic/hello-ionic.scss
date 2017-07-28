@@ -12,3 +12,19 @@
 .medic-description{
     color:#2c8beb;
 }
+
+.page-container .item-md {
+  
+    .label-md{
+  position: relative; 
+    }
+    .btn-small{
+        float: right;
+        padding: 13px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #333;
+        text-transform: uppercase;
+    }
+}

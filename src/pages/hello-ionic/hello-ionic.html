@@ -10,20 +10,21 @@
 
 <ion-content padding>
 
-
+<div  class="page-container">
   <h5>Doctors near by you!</h5>
   <ion-list>
-    <ion-item *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title, song.description, song.image)">
-      <span 
-        class="thumb_img" 
-        [style.backgroundImage]="'url(' + song.image + ')'">
-      </span>
-      {{song.title}}
-      <br>
-      
-     <small class="medic-description">
-      {{song.description}}  
-    </small> 
+    <ion-item *ngFor="let song of songs | async">
+      <div >
+        <div (click)="showOptions(song.$key, song.title, song.description, song.image)">
+          <span class="thumb_img" [style.backgroundImage]="'url(' + song.image + ')'"></span> 
+          {{song.title}}
+          <br>
+          <small class="medic-description">
+            {{song.description}}  
+          </small>
+        </div>
+        <button class="btn-small" (click)="userDetails(song.$key, song.title, song.image, song.description)"> + see more </button>
+      </div>
     </ion-item>
     <ion-buttons end>
       <button ion-button icon-only (click)="addSong()">
@@ -32,7 +33,7 @@
     </ion-buttons>
   </ion-list>
   
- <button ion-button center (click)="facebookLogin()">
+ <button ion-button center (click)="facebookLogin(song.$key, song.title)">
     Log In with Facebook
   </button>
 
@@ -45,7 +46,7 @@
     Here you can find everything about doctors in your City
   </p>
 
-
+</div>
 
 
 </ion-content>
